@@ -2,8 +2,8 @@
 using namespace std;
 int main() {
 	int n;
-	cin » n;
-	cout « n « ": ";
+	cin>> n;
+	cout << n << ": ";
 	bool isPrime = true;
 	for (int i = 2; i * i <= n; ++i) {
 		if (n % i == 0) {
@@ -12,14 +12,14 @@ int main() {
 		}
 	}
 	if (n == 1) {
-		cout « "Unit";
+		cout << "Unit";
 	}
 	else if (isPrime) {
-		cout « "Prime";
+		cout << "Prime";
 	}
 	else {
-		cout « "Composite";
+		cout << "Composite";
 	}
-	cout « endl;
+	cout << endl;
 	return 0;
 }
