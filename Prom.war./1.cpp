@@ -106,3 +106,155 @@ int multiDigit(int X) {
 	if (lastEven == 0) { return multiEven;}
 	else { return multiNoEven;}
 }
+
+int workMassive04(int *ptrM,int maxN)
+{
+	int n;
+	int sumRes = 0;
+	for (n = 0; n < maxN; n++) {
+		if (isSimple(ptrM[n])) {sumRes=sumRes+ ptrM[n];}
+	}
+	return sumRes;
+}
+
+int mainTest()
+{
+	int valX;
+	setlocale(LC_ALL, "Rus"); // русифицируем вывод
+	cout << "Введите число:" << endl;
+	cin >> valX;
+/*	if (isSimple(valX)==true) {
+		cout << "Число - простое" << endl;
+	}
+	else {
+		cout << "Число - составное" << endl;
+	} 
+*/
+//	system("pause");
+//	cout << "Сумма нечетных:" << sumNoEven(valX) << endl;
+	cout << "Произведение цифр числа по четности последней цифры:" << multiDigit(valX) << endl;
+
+	return 0;
+}
+
+void mainNoAnswer() 
+{
+	cout << endl;
+	cout << "Увы... Задача не решена.";
+}
+
+void main04() // задача 4
+/* 4) Напишите программу, находящую сумму простых элементов массива.*/
+{
+	int i,iMax;
+	cout << "Введите количество элементов массива:" << endl;
+	cin >> iMax;
+	int *ptrArr = new int[iMax];
+	for (i = 0; i < iMax; i++) { ptrArr[i] = 0; }
+	cout << "Введите элементы массива (по 1 в строке):" << endl;
+	for (i = 0; i < iMax; i++) { cin >> ptrArr[i]; }
+	cout << "Конец ввода массива. Что занесли:";
+	for (i = 0; i < iMax; i++) { cout << " " << ptrArr[i]; }
+	cout << endl;
+	cout << endl;
+
+	cout << "Сумма простых чисел массива: " << workMassive04(ptrArr,iMax) <<endl;
+
+	delete [] ptrArr;
+}
+
+void main05() // задача 5
+/* 5) Напишите программу, заменяющую составные числа на их самые большие простые делители.*/
+{
+	int valX;
+	cout << "Введите число:" << endl;
+	cin >> valX;
+	cout << "Максимальный простой делитель:" << maxSimple(valX) << endl;
+}
+
+void main06() // задача 6
+/* 6) Напишите программу, выписывающую все элементы последовательности, имеющие не менее пяти делителей*/
+{
+	int i, iMax, cntDvd;
+	cout << "Введите количество элементов последовательности:" << endl;
+	cin >> iMax;
+	int *ptrArr = new int[iMax];
+	for (i = 0; i < iMax; i++) { ptrArr[i] = 0; }
+	cout << "Введите элементы последовательности (по 1 в строке):" << endl;
+	for (i = 0; i < iMax; i++) { cin >> ptrArr[i]; }
+	cout << "Конец ввода последовательности. Что занесли:";
+	for (i = 0; i < iMax; i++) { cout << " " << ptrArr[i]; }
+	cout << endl;
+	cout << endl;
+	cout << "Имеют не менее 5 делителей (не равных самому числу):" << endl;
+	for (i = 0; i < iMax; i++) {
+		cntDvd = countDivider(ptrArr[i]);
+		if (cntDvd >= 5) {
+			cout << ptrArr[i] <<" (" << cntDvd << ")" << endl;
+		}
+	}
+	cout << endl;
+
+	delete[] ptrArr;
+}
+
+void main07()  // задача 7
+/* 7) Напишите программу, выписывающую все элементы последовательности, имеющие ровно семь делителей*/
+{
+	int i, iMax, cntDvd;
+	cout << "Введите количество элементов последовательности:" << endl;
+	cin >> iMax;
+	int *ptrArr = new int[iMax];
+	for (i = 0; i < iMax; i++) { ptrArr[i] = 0; }
+	cout << "Введите элементы последовательности (по 1 в строке):" << endl;
+	for (i = 0; i < iMax; i++) { cin >> ptrArr[i]; }
+	cout << "Конец ввода последовательности. Что занесли:";
+	for (i = 0; i < iMax; i++) { cout << " " << ptrArr[i]; }
+	cout << endl;
+	cout << endl;
+	cout << "Имеют ровно 7 делителей (не равных самому числу):" << endl;
+	for (i = 0; i < iMax; i++) {
+		cntDvd = countDivider(ptrArr[i]);
+		if (cntDvd == 7) {
+			cout << ptrArr[i] << " (" << cntDvd << ")" << endl;
+		}
+	}
+	cout << endl;
+
+	delete[] ptrArr;
+}
+
+int main()
+{
+	int zadanie;
+	setlocale(LC_ALL, "Rus"); // русифицируем вывод
+	cout << "Введите номер задачи:" << endl;
+	cin >> zadanie;
+
+	switch(zadanie)
+	{
+	case 4:
+		{ 
+		cout << "Напишите программу, находящую сумму простых элементов массива." << endl << endl;
+		main04(); break; }
+	case 5:
+	{
+		cout << "Напишите программу, заменяющую составные числа на их самые большие простые делители." << endl << endl;
+		main05(); break; }
+	case 6:
+	{
+		cout << "Напишите программу, выписывающую все элементы последовательности, имеющие не менее пяти делителей." << endl << endl;
+		main06(); break; }
+	case 7:
+	{
+		cout << "Напишите программу, выписывающую все элементы последовательности, имеющие ровно семь делителей." << endl << endl;
+		main07(); break; }
+	default:
+		mainNoAnswer();
+	}
+	cout << endl;
+	
+	system("pause");
+
+	return 0;
+}
